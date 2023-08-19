@@ -205,19 +205,31 @@ class CocktailsController < ApplicationController
   end
 
   def toggle_favorite
+    # cocktail = Recipe.find_by(id: params['cocktail_id'])
+    # favorite_family = CocktailFamily.for_user(current_user).first
+
+    # if cocktail.cocktail_families.include?(favorite_family)
+    #   joiner = CocktailFamilyJoiner.find_by(recipe: cocktail, cocktail_family: favorite_family)
+    #   favorited = false
+    #   joiner.destroy!
+    # else
+    #   cocktail.cocktail_families << favorite_family
+    #   favorited = true
+    # end
+
+    # cocktail.save
+
     cocktail = Recipe.find_by(id: params['cocktail_id'])
-    favorite_family = CocktailFamily.for_user(current_user).first
 
-    if cocktail.cocktail_families.include?(favorite_family)
-      joiner = CocktailFamilyJoiner.find_by(recipe: cocktail, cocktail_family: favorite_family)
-      favorited = false
-      joiner.destroy!
-    else
-      cocktail.cocktail_families << favorite_family
+    fave = UserFavorites.where(user_id: current_user.id, recipe_id: cocktail.id)&.first
+
+    if fave.nil?
+      UserFavorites.create!(user_id: current_user.id, recipe_id: cocktail.id)
       favorited = true
+    else
+      fave.destroy!
+      favorited = false
     end
-
-    cocktail.save
 
     respond_to do |format|
       if favorited

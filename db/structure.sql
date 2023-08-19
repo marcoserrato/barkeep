@@ -10,13 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: public; Type: SCHEMA; Schema: -; Owner: -
---
-
--- *not* creating schema, since initdb creates it
-
-
---
 -- Name: extract_tags_from_blob(jsonb); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -359,6 +352,36 @@ CREATE TABLE public.schema_migrations (
 
 
 --
+-- Name: user_favorites; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_favorites (
+    id bigint NOT NULL,
+    recipe_id bigint NOT NULL,
+    user_id bigint NOT NULL
+);
+
+
+--
+-- Name: user_favorites_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_favorites_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_favorites_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_favorites_id_seq OWNED BY public.user_favorites.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -451,6 +474,13 @@ ALTER TABLE ONLY public.reference_bottles ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
+-- Name: user_favorites id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_favorites ALTER COLUMN id SET DEFAULT nextval('public.user_favorites_id_seq'::regclass);
+
+
+--
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -535,6 +565,14 @@ ALTER TABLE ONLY public.reference_bottles
 
 ALTER TABLE ONLY public.schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: user_favorites user_favorites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_favorites
+    ADD CONSTRAINT user_favorites_pkey PRIMARY KEY (id);
 
 
 --
@@ -735,6 +773,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20230601030145'),
 ('20230804185415'),
 ('20230808220621'),
-('20230819005650');
+('20230819005650'),
+('20230819195228');
 
 

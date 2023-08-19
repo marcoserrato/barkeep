@@ -1,0 +1,36 @@
+{
+  "name": "Sun Valley",
+  "source_url": "/sun-valley-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "cream",
+      "amount": 8.0,
+      "unit": "oz",
+      "amount_string": "8oz cream\n"
+    },
+    {
+      "name": "egg",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "1 egg yolk\n"
+    },
+    {
+      "name": "simple syrup",
+      "amount": 2.0,
+      "unit": "tbsp",
+      "amount_string": "2tbsp simple syrup\n"
+    },
+    {
+      "name": "rum",
+      "amount": 2.0,
+      "unit": "oz",
+      "amount_string": "2oz rum\n"
+    },
+    {
+      "name": "Serves Two",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "Serves Two\n"
+    }
+  ]
+}

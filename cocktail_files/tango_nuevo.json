@@ -1,0 +1,36 @@
+{
+  "name": "Tango Nuevo",
+  "source_url": "/tango-nuevo-cocktail-recipe",
+  "ingredients": [
+    {
+      "name": "aged rum",
+      "amount": 1.5,
+      "unit": "oz",
+      "amount_string": "1½oz aged rum\n"
+    },
+    {
+      "name": "honey syrup",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz honey syrup\n"
+    },
+    {
+      "name": "coffee liqueur",
+      "amount": 0.5,
+      "unit": "oz",
+      "amount_string": "½oz coffee liqueur or cold brew\n"
+    },
+    {
+      "name": "salt",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "pinch smoked sea salt for garnish\n"
+    },
+    {
+      "name": "lemon twist",
+      "amount": 1.0,
+      "unit": "unknown",
+      "amount_string": "lemon twist for garnish\n"
+    }
+  ]
+}

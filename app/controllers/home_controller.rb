@@ -13,9 +13,17 @@ class HomeController < ApplicationController
     models = Recipe.where(id: cocktails.makeable_ids).includes(:reagent_amounts)
     @users_available = models.for_user(current_user).where('source != ALL(?::varchar[])', '{drink_builder}')
     @shared_available = models.for_user(nil)
-    @favorites = UserFavorites.where(user_id: current_user.id).map(&:recipe)
+    @favorites = favs
+
 
     @available_cocktails = @users_available + @shared_available
+  end
+
+  def favs
+    favor = UserFavorites.where(user_id: current_user.id).map(&:recipe)
+    favor.map do |f|
+      [f, HowManyCanIMake.how_many(f).can_i_make(current_user)]
+    end
   end
 
   def logged_out_index

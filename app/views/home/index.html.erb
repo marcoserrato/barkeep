@@ -15,21 +15,23 @@
           <thead>
             <tr>
               <th style="width: 15%">Name</th>
+              <th style="wifth: 15%">How Many Can You Make</th>
               <th style="width: 20%">Show Ingredients</th>
-              <th style="width: 65%">Ingredients</th>
+              <th style="width: 50%">Ingredients</th>
             </tr>
           </thead>
           <tbody>
             <% @favorites.each do |cocktail| %>
               <tr data-controller="home-index">
-                <td><%= link_to cocktail.name.html_safe, shared_cocktail_path(cocktail) %></td>
+                <td><%= link_to cocktail.first.name.html_safe, shared_cocktail_path(cocktail.first) %></td>
+                <td><%=cocktail.second%></td>
                 <td>
                   <%=
                     link_to 'Show Ingredients',
-                      shared_cocktail_path(cocktail),
+                      shared_cocktail_path(cocktail.first),
                       class: "btn btn-outline-info", 
                       data: { 
-                        turbo_frame: dom_id(cocktail),
+                        turbo_frame: dom_id(cocktail.first),
                         action: "click->home-index#toggleCollapse",
                         toggled: 'false'
                       }
@@ -37,10 +39,10 @@
                 </td>
                 <td>
                   <div class="collapse" data-home-index-target="collapse">
-                    <%= turbo_frame_tag(cocktail) do %>
+                    <%= turbo_frame_tag(cocktail.first) do %>
                       <p>Loading...</p>
                     <% end %>
-                    <%= link_to 'Make Drink', drink_making_path(cocktail), class: 'btn btn-primary', data: { turbo_frame: 'madeThisModalFrame' } %>
+                    <%= link_to 'Make Drink', drink_making_path(cocktail.first), class: 'btn btn-primary', data: { turbo_frame: 'madeThisModalFrame' } %>
                   </div>
                 </td>
               </tr>

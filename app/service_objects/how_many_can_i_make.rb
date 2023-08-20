@@ -17,10 +17,12 @@ class HowManyCanIMake
   # Array[] of Reagents
   def can_i_make(user)
     cocktail.matching_reagents(user).map do |amount, reagents|
+      next if amount.unitless?
+
       total_amount = reagents.map(&:current_volume).reduce(&:+)&.convert_to(:ml) || Measured::Volume.new(0, :ml)
       cocktail_amount = amount.required_volume.convert_to(:ml)
 
       total_amount.value.to_i / cocktail_amount.value.to_i
-    end.min
+    end.compact.min
   end
 end
